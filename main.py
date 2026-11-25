@@ -33,7 +33,7 @@ def main():
     name = ENTRY_TEXT
     if not 1 <= len(name) <= 32:
         raise ValueError("entry must be 1-32 characters, got %d" % len(name))
-    if name != name.strip() or any(ord(ch) < 32 for ch in name):
+    if name != name.strip() or any(ord(ch) < 32 or ord(ch) == 127 for ch in name):
         raise ValueError("entry must be a single clean line")
     path = resolve_output_path()
     parent = os.path.dirname(path)
